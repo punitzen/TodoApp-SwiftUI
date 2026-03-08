@@ -18,3 +18,6 @@ Todo App SwiftUI
 - One area of improvement would be the reminder system, making it more robust by handling additional edge cases like rescheduling notifications, and improving background reliability.
 - I would also refine the packaging of different Manager classes into plug-n-play SPM packages to modularize different components, for example separating notification scheduling and persistence into dedicated services to make the App lighter and easier to test.
 - Finally, if the minimum OS requirement allowed it, I would explore migrating from Core Data to SwiftData, which integrates more naturally with SwiftUI and could simplify the persistence layer.
+
+### Sample
+https://github.com/punitzen/TodoApp-SwiftUI/blob/main/sample.mov
