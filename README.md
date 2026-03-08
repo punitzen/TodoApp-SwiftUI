@@ -20,4 +20,4 @@ Todo App SwiftUI
 - Finally, if the minimum OS requirement allowed it, I would explore migrating from Core Data to SwiftData, which integrates more naturally with SwiftUI and could simplify the persistence layer.
 
 ### Sample
-https://github.com/punitzen/TodoApp-SwiftUI/blob/main/sample.mov
+https://github.com/user-attachments/assets/26b2d493-97e5-436e-9593-978c7751662c
