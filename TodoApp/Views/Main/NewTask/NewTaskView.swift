@@ -37,7 +37,11 @@ struct NewTaskView: View {
                         .frame(height: 10)
 
                     VStack(alignment: .leading, spacing: 20) {
-                        TaskTitleView(userInput: $textFieldManager.userInput, showErrorMessage: $showTaskTitleErrorMessage)
+                        TaskTitleView(
+                            userInput: $textFieldManager.userInput,
+                            showErrorMessage: $showTaskTitleErrorMessage,
+                            shouldFocus: showNewTaskView
+                        )
                         
                         TaskNoteView(userInput: $noteTextFieldManager.userInput)
                         
@@ -113,14 +117,19 @@ struct NewTaskView: View {
             UIApplication.shared.resignResponder()
             
             if newValue {
-                textFieldManager.userInput = ""
-                noteTextFieldManager.userInput = ""
-                UITextView.appearance().backgroundColor = .clear
-                UITableView.appearance().backgroundColor = .clear
-                showTaskTitleErrorMessage = false
-                toggleViewSwitch = false
-                UserDefaultsUtility.increaseSetReminderLaterCount()
-            }
+                   textFieldManager.userInput = ""
+                   noteTextFieldManager.userInput = ""
+                   UITextView.appearance().backgroundColor = .clear
+                   UITableView.appearance().backgroundColor = .clear
+                   showTaskTitleErrorMessage = false
+                   toggleViewSwitch = false
+                   UserDefaultsUtility.increaseSetReminderLaterCount()
+                   
+                  
+                   DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                       UIApplication.shared.becomeFirstResponder()
+                   }
+               }
         }
         .onChange(of: toggleViewSwitch) { newValue in
             if newValue {
@@ -143,5 +152,10 @@ struct NewTaskView: View {
             if toggleViewSwitch { viewModel.dataManager.setReminder(for: todo, with: reminderDate) }
             showNewTaskView = false
         }
+    }
+}
+extension UIApplication {
+    func becomeFirstResponder() {
+        sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
     }
 }
